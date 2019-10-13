@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">Watch List</string>
+    <string name="title_movies">Movies</string>
+    <string name="title_tv_series">TV Series</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="text_rate">Rate: </string>
+    <string name="text_first_air">First Air Date: </string>
+    <string name="text_nothing">Data Not Found</string>
+    <string name="text_empty_data">Empty Data</string>
+    <string name="koneksi_failed">Connection Failed</string>
+    <string name="text_release_date">Release Date: </string>
+    <string name="change_language_settings">Change Language Settings</string>
+    <string name="label_detail">Detail</string>
+
+    <string name="title_watch">Watch</string>
+    <string name="title_likes">Likes</string>
+    <string name="text_cari">Search</string>
+    <string name="appwidget_text">Fave\'s</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty_text">Empty</string>
+    <string name="text_reminder">Reminder</string>
+    <string name="text_daily_reminder">Daily Reminder</string>
+    <string name="text_release_reminder">Release Reminder</string>
+    <string name="text_cancel_daily_reminder">Daily reminder is deactivated</string>
+    <string name="text_set_daily_reminder">Daily reminder is activated</string>
+    <string name="text_message_daily_reminder">Open your WatchList and likes, your favourite!</string>
+    <string name="text_release_reminder_act">Release reminder is activated</string>
+    <string name="text_release_active">Release reminder is active</string>
+    <string name="text_release_deactive">Release reminder is deactived</string>
+    <string name="text_release_today">Release Today</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

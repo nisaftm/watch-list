@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Daftar Nonton</string>
+    <string name="title_movies">Film</string>
+    <string name="title_tv_series">Serial TV</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="text_rate">Peringkat: </string>
+    <string name="text_first_air">Tayang Pertama Kali: </string>
+    <string name="text_nothing">Data Tidak Ditemukan</string>
+    <string name="text_empty_data">Data Kosong</string>
+    <string name="koneksi_failed">Koneksi Gagal</string>
+    <string name="text_release_date">Tanggal Rilis: </string>
+    <string name="change_language_settings">Ubah Pengaturan Bahasa</string>
+    <string name="label_detail">Rincian</string>
+
+    <string name="title_watch">Tontonan</string>
+    <string name="title_likes">Disukai</string>
+
+
+    <string name="text_cari">Cari</string>
+    <string name="appwidget_text">Favorit</string>
+    <string name="add_widget">Tambahkan widget</string>
+
+    <string name="empty_text">Kosong</string>
+    <string name="text_reminder">Pengingat</string>
+    <string name="text_daily_reminder">Pengingat Harian</string>
+    <string name="text_release_reminder">Pengingat Rilis</string>
+    <string name="text_cancel_daily_reminder">Pengingat harian dinon-aktifkan</string>
+    <string name="text_set_daily_reminder">Pengingat harian diaktifkan</string>
+    <string name="text_message_daily_reminder">Ayo buka WatchList dan like, tontonan favoritmu!</string>
+    <string name="text_release_reminder_act">Pengingat Rilis di-aktifkan</string>
+    <string name="text_release_active">Pengingat Rilis sudah aktif</string>
+    <string name="text_release_deactive">Pengingat Rilis di-nonakifkan</string>
+    <string name="text_release_today">Rilis Hari Ini</string>
+
+</resources>

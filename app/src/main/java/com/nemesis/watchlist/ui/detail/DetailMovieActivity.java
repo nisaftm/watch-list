@@ -40,11 +40,9 @@ public class DetailMovieActivity extends AppCompatActivity {
     private String title;
     private int category;
     private int id;
-    private Realm realm;
     private RealmHelper realmHelper;
     private Menu menuItem;
     private boolean isFave;
-    private String TAG = getClass().getSimpleName();
 
 
     @Override
@@ -58,7 +56,7 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         Realm.init(DetailMovieActivity.this);
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder().build();
-        realm = Realm.getInstance(realmConfiguration);
+        Realm realm = Realm.getInstance(realmConfiguration);
         realmHelper = new RealmHelper(realm);
 
         category = getIntent().getIntExtra(EXTRA_CATEGORY, 0);

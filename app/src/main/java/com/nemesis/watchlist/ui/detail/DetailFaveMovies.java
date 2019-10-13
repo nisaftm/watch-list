@@ -40,7 +40,6 @@ public class DetailFaveMovies extends AppCompatActivity {
     private int category;
     private int id;
     private boolean isFave;
-    private Realm realm;
     private RealmHelper realmHelper;
     private Menu menuItem;
 
@@ -55,7 +54,7 @@ public class DetailFaveMovies extends AppCompatActivity {
 
         Realm.init(DetailFaveMovies.this);
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder().build();
-        realm = Realm.getInstance(realmConfiguration);
+        Realm realm = Realm.getInstance(realmConfiguration);
         realmHelper = new RealmHelper(realm);
 
         ImageView ivdetposter = findViewById(R.id.ivdetposter);

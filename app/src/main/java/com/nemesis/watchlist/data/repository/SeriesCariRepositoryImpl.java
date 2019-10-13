@@ -14,8 +14,4 @@ public class SeriesCariRepositoryImpl implements SeriesCariRepository{
     public Observable<Response<ResponseSeries>> getSeries(String language, String query) {
         return ApiRepository.doRequest(urlBase).getSeriessCari(apiKey, language, query);
     }
-    /*@Override
-    public Observable<Response<ResponseMovies>> getSeries(String language, String query) {
-        return ApiRepository.doRequest(urlBase).getSeriessCari(apiKey, language, query);
-    }*/
 }

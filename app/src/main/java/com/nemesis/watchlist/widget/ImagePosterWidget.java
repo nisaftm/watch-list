@@ -28,7 +28,6 @@ public class ImagePosterWidget extends AppWidgetProvider {
         remoteViews.setEmptyView(R.id.stack_view, R.id.empty_view);
 
         Intent tIntent = new Intent(context, ImagePosterWidget.class);
-       // tIntent.setAction(ImagePosterWidget.TOAST_ACTION);
         tIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, tIntent, PendingIntent.FLAG_UPDATE_CURRENT);

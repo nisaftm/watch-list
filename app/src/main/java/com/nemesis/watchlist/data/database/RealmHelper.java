@@ -45,11 +45,10 @@ public class RealmHelper {
     }
 
     public List<Movies> getSearchMovies(String query, int category) {
-        RealmResults<Movies> movies = realm.where(Movies.class)
+        return realm.where(Movies.class)
                 .equalTo("category", category)
                 .contains("originalTitle", query, Case.INSENSITIVE)
                 .findAll();
-        return movies;
 
     }
 

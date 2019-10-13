@@ -48,12 +48,10 @@ import static com.nemesis.watchlist.BuildConfig.urlBase;
 
 public class ReleaseReminder extends BroadcastReceiver {
 
-    private static int NOTIFICATION_REQUEST_CODE = 200;
     private int ID_REPEATING = 10;
     private int ID_NOTIF = 0;
     private List<NotificationItem> stackNotif = new ArrayList<>();
     private int MAX_NOTIFICATION;
-    private String GROUP_KEY_MOVIES = "group_key_movies";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -196,9 +194,11 @@ public class ReleaseReminder extends BroadcastReceiver {
         Bitmap bitmap = BitmapFactory.decodeResource(WatchList.getContext().getResources(), R.drawable.ic_email_black_24dp);
         Intent intent = new Intent(WatchList.getContext(), ReleaseActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        int NOTIFICATION_REQUEST_CODE = 200;
         PendingIntent pendingIntent = PendingIntent.getActivity(WatchList.getContext(), NOTIFICATION_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder;
 
+        String GROUP_KEY_MOVIES = "group_key_movies";
         if (ID_NOTIF < MAX_NOTIFICATION){
             builder = new NotificationCompat.Builder(WatchList.getContext(), CHANNEL_ID)
                     .setContentTitle(stackNotif.get(ID_NOTIF).getSender())

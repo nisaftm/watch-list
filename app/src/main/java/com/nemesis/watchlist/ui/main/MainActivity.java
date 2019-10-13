@@ -19,7 +19,6 @@ import com.nemesis.watchlist.ui.main.watch.WatchFragment;
 import com.nemesis.watchlist.ui.reminder.RemainderActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //private Fragment fragment1 = new MoviesFragment();
     private Fragment fragment1 = new WatchFragment();
     private Fragment fragment2 = new FaveFragment();
     private Fragment fragment;

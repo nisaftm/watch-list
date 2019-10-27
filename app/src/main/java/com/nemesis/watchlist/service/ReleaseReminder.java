@@ -110,78 +110,9 @@ public class ReleaseReminder extends BroadcastReceiver {
 
             @Override
             public void onFailure(Call<ResponseMovies> call, Throwable t) {
-
+                Log.e(TAG, "onFailure: "+t.getLocalizedMessage());
             }
         });
-
-        /*MutableLiveData<List<ResultsMovies>> resMovies = new MutableLiveData<>();
-
-        releaseRepository.getMovieRelease(tanggal)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<ResponseMovies>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Response<ResponseMovies> response) {
-                        if (response.isSuccessful() && response.body() != null){
-                            resMovies.postValue(response.body().getResults());
-
-
-                        }else {
-                            ResponseBody resBody = response.errorBody();
-
-                            if (resBody != null){
-                                Log.e(TAG, "onNext: "+new Gson().toJson(resBody));
-                                String sJson = null;
-                                try {
-                                    sJson = resBody.string();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                JSONObject jsonObject = null;
-                                try {
-                                    if (sJson != null) {
-                                        jsonObject = new JSONObject(sJson);
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                ResponseError resError;
-                                if (jsonObject != null) {
-                                    resError = new Gson().fromJson(jsonObject.toString(), ResponseError.class);
-                                    releaseError.postValue(resError);
-                                }
-
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        ResponseError resError = new ResponseError();
-                        resError.setSuccess(false);
-                        resError.setStatusMessage(WatchList.getContext().getString(R.string.koneksi_failed));
-                        resError.setStatusCode(0);
-                        releaseError.postValue(resError);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-        if (resMovies.getValue() != null){
-            arrayList.addAll(resMovies.getValue());
-            Log.e(TAG, "getRelease");
-            setNotif();
-
-        }*/
-
     }
 
 

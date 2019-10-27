@@ -1,8 +1,5 @@
 package com.nemesis.watchlist.data.database;
 
-import android.widget.Toast;
-
-import com.nemesis.watchlist.WatchList;
 import com.nemesis.watchlist.data.model.Movies;
 
 import java.util.List;
@@ -16,16 +13,6 @@ public class RealmHelper {
 
     public RealmHelper(Realm realm) {
         this.realm = realm;
-    }
-
-    public void saveFave(Movies movies) {
-        realm.executeTransaction(realm -> {
-
-            Movies item = realm.copyToRealm(movies);
-            Toast.makeText(WatchList.getContext(), item.getOriginalTitle() + " ditambahkan", Toast.LENGTH_SHORT).show();
-
-        });
-
     }
 
     public List<Movies> getMovies(int category) {
@@ -55,4 +42,5 @@ public class RealmHelper {
     public List<Movies> getFaves() {
         return realm.where(Movies.class).findAll();
     }
+
 }

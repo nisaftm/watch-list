@@ -25,7 +25,6 @@ public class ImagePosterWidget extends AppWidgetProvider {
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.image_poster_widget);
         remoteViews.setRemoteAdapter(R.id.stack_view, intent);
-        remoteViews.setEmptyView(R.id.stack_view, R.id.empty_view);
 
         Intent tIntent = new Intent(context, ImagePosterWidget.class);
         tIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);

@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <permission android:name="com.nemesis.watchlist.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.nemesis.watchlist.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:name=".WatchList"
@@ -21,14 +26,22 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="n">
+        <provider
+            android:name=".data.contentprov.WatchContentProvider"
+            android:authorities="com.nemesis.watchlist"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.nemesis.watchlist.READ_DATABASE"
+            android:writePermission="com.nemesis.watchlist.WRITE_DATABASE"/>
+
         <activity
-            android:label="@string/text_release_today"
-            android:name=".ui.release.ReleaseActivity" />
+            android:name=".ui.release.ReleaseActivity"
+            android:label="@string/text_release_today" />
 
         <receiver
             android:name=".service.ReleaseReminder"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"/>
         <receiver
             android:name=".service.Reminder"
             android:enabled="true"
@@ -49,7 +62,7 @@
         </receiver>
 
         <activity
-            android:name=".ui.detail.DetailFaveMovies"
+            android:name=".ui.detail.DetailFaveMoviesActivity"
             android:label="@string/label_detail" />
         <activity
             android:name=".ui.detail.DetailSeriesActivity"

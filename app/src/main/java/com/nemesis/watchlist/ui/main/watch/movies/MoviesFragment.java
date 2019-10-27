@@ -103,19 +103,20 @@ public class MoviesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_movies, container, false);
-        rvmovies = view.findViewById(R.id.rvmovies);
-        pbmovies = view.findViewById(R.id.pbmovies);
-        etmovies = view.findViewById(R.id.etmovies);
-        ivrefresh = view.findViewById(R.id.ivrefresh);
 
-        return view;
+
+        return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        rvmovies = view.findViewById(R.id.rvmovies);
+        pbmovies = view.findViewById(R.id.pbmovies);
+        etmovies = view.findViewById(R.id.etmovies);
+        ivrefresh = view.findViewById(R.id.ivrefresh);
 
         getMovies();
 

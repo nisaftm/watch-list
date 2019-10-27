@@ -20,16 +20,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nemesis.watchlist.R;
 import com.nemesis.watchlist.data.database.RealmHelper;
 import com.nemesis.watchlist.data.model.Movies;
-import com.nemesis.watchlist.ui.detail.DetailFaveMovies;
+import com.nemesis.watchlist.ui.detail.DetailFaveMoviesActivity;
 import com.nemesis.watchlist.ui.main.fave.movies.item.MoviesFaveAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
-import static com.nemesis.watchlist.ui.detail.DetailFaveMovies.EXTRA_MOVIES;
+import static com.nemesis.watchlist.ui.detail.DetailFaveMoviesActivity.EXTRA_MOVIES;
 import static com.nemesis.watchlist.ui.detail.DetailMovieActivity.EXTRA_CATEGORY;
 
 /**
@@ -57,27 +56,25 @@ public class MoviesFaveFragment extends Fragment {
             Realm.init(getActivity());
         }
 
-        RealmConfiguration realmConfiguration = new RealmConfiguration
-                .Builder().build();
-        Realm realm = Realm.getInstance(realmConfiguration);
+        Realm realm = Realm.getDefaultInstance();
         realmHelper = new RealmHelper(realm);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_movies, container, false);
-        rvmovies = view.findViewById(R.id.rvmovies);
-        pbmovies = view.findViewById(R.id.pbmovies);
-        etmovies = view.findViewById(R.id.etmovies);
-        ivrefresh = view.findViewById(R.id.ivrefresh);
 
-        return view;
+        return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        rvmovies = view.findViewById(R.id.rvmovies);
+        pbmovies = view.findViewById(R.id.pbmovies);
+        etmovies = view.findViewById(R.id.etmovies);
+        ivrefresh = view.findViewById(R.id.ivrefresh);
 
         getMovies();
 
@@ -110,7 +107,7 @@ public class MoviesFaveFragment extends Fragment {
         rvmovies.setNestedScrollingEnabled(true);
 
         MoviesFaveAdapter adapter = new MoviesFaveAdapter(getActivity(), movies, item -> {
-            Intent intent = new Intent(getActivity(), DetailFaveMovies.class);
+            Intent intent = new Intent(getActivity(), DetailFaveMoviesActivity.class);
             intent.putExtra(EXTRA_MOVIES, item);
             intent.putExtra(EXTRA_CATEGORY, 0);
             startActivity(intent);

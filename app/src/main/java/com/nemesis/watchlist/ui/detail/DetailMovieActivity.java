@@ -1,5 +1,10 @@
 package com.nemesis.watchlist.ui.detail;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +20,11 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.nemesis.watchlist.R;
 import com.nemesis.watchlist.WatchList;
+import com.nemesis.watchlist.data.database.DBContract;
 import com.nemesis.watchlist.data.database.RealmHelper;
 import com.nemesis.watchlist.data.model.Movies;
 import com.nemesis.watchlist.data.model.ResultsMovies;
+import com.nemesis.watchlist.widget.ImagePosterWidget;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,9 +32,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 import static com.nemesis.watchlist.BuildConfig.urlGambar;
+import static com.nemesis.watchlist.data.database.DBContract.CONTENT_URI;
 
 public class DetailMovieActivity extends AppCompatActivity {
     public static final String EXTRA_MOVIES = "extraMovies";
@@ -43,6 +50,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     private RealmHelper realmHelper;
     private Menu menuItem;
     private boolean isFave;
+    private Uri uriId;
 
 
     @Override
@@ -53,13 +61,11 @@ public class DetailMovieActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
-
-        Realm.init(DetailMovieActivity.this);
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder().build();
-        Realm realm = Realm.getInstance(realmConfiguration);
+        Realm realm = Realm.getDefaultInstance();
         realmHelper = new RealmHelper(realm);
 
         category = getIntent().getIntExtra(EXTRA_CATEGORY, 0);
+        ResultsMovies items = getIntent().getParcelableExtra(EXTRA_MOVIES);
 
         ImageView ivdetposter = findViewById(R.id.ivdetposter);
         TextView tvdettitle = findViewById(R.id.tvdettitle);
@@ -68,10 +74,8 @@ public class DetailMovieActivity extends AppCompatActivity {
         TextView tvdetrate = findViewById(R.id.tvdetrate);
         RatingBar rbdet = findViewById(R.id.rbdet);
 
-        ResultsMovies items = getIntent().getParcelableExtra(EXTRA_MOVIES);
-
         if (items != null) {
-
+            uriId = Uri.parse(CONTENT_URI+"/"+items.getId());
             poster = items.getPosterPath();
             oriTitle = items.getOriginalTitle();
             releaseDate = items.getReleaseDate();
@@ -148,8 +152,19 @@ public class DetailMovieActivity extends AppCompatActivity {
     }
 
     private void deleteFave() {
-        realmHelper.deleteFave(id);
+        //realmHelper.deleteFave(id);
         Toast.makeText(WatchList.getContext(),oriTitle+" dihapus", Toast.LENGTH_SHORT).show();
+
+        getContentResolver().delete(uriId, null, null);
+        setWidget();
+    }
+
+    private void setWidget() {
+        Intent intent = new Intent(this, ImagePosterWidget.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), ImagePosterWidget.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        sendBroadcast(intent);
     }
 
     private void addFave() {
@@ -163,7 +178,21 @@ public class DetailMovieActivity extends AppCompatActivity {
         movies.setTitle(title);
         movies.setVoteAverage(voteAve);
 
-        realmHelper.saveFave(movies);
+        //realmHelper.saveFave(movies);
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBContract.MoviesColumns.ID, id);
+        contentValues.put(DBContract.MoviesColumns.CATEGORY, category);
+        contentValues.put(DBContract.MoviesColumns.ORIGINALTITLE, oriTitle);
+        contentValues.put(DBContract.MoviesColumns.OVERVIEW, overview);
+        contentValues.put(DBContract.MoviesColumns.POSTERPATH, poster);
+        contentValues.put(DBContract.MoviesColumns.RELEASEDATE, releaseDate);
+        contentValues.put(DBContract.MoviesColumns.TITLE, title);
+        contentValues.put(DBContract.MoviesColumns.VOTEAVERAGE, voteAve);
+
+        getContentResolver().insert(CONTENT_URI, contentValues);
+
+        setWidget();
     }
 
     private void setFave(){

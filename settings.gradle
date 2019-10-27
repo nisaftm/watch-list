@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':favesapp'
 rootProject.name='Watch List'

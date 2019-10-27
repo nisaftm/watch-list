@@ -22,11 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
+public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private final Context context;
     private List<Bitmap> bitmaps = new ArrayList<>();
     private ArrayList<Movies> movies = new ArrayList<>();
@@ -42,11 +41,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public void onDataSetChanged() {
-        Realm.init(context);
-
-        RealmConfiguration realmConfiguration = new RealmConfiguration
-                .Builder().build();
-        Realm realm = Realm.getInstance(realmConfiguration);
+        Realm realm = Realm.getDefaultInstance();
         RealmHelper realmHelper = new RealmHelper(realm);
 
         movies.addAll(realmHelper.getFaves());
@@ -85,7 +80,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public RemoteViews getViewAt(int i) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.item_widget);
-        remoteViews.setImageViewBitmap(R.id.imageView, bitmaps.get(i));
+        remoteViews.setImageViewBitmap(R.id.ivposter, bitmaps.get(i));
 
 
         Bundle extras = new Bundle();
@@ -93,7 +88,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         Intent intent = new Intent();
         intent.putExtras(extras);
 
-        remoteViews.setOnClickFillInIntent(R.id.imageView, intent);
+        remoteViews.setOnClickFillInIntent(R.id.ivposter, intent);
 
         return remoteViews;
     }

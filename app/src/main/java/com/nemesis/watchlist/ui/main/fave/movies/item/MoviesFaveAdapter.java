@@ -41,7 +41,6 @@ public class MoviesFaveAdapter extends RecyclerView.Adapter<MoviesFaveAdapter.Mo
     }
 
 
-
     @NonNull
     @Override
     public MoviesFaveHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

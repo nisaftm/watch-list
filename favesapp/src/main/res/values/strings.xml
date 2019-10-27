@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Favorite Apps</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="text_release_date">Release Date</string>
+    <string name="text_rate">Rating</string>
+    <string name="text_first_air">First Airing:</string>
+</resources>

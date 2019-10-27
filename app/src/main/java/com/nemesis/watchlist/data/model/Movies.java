@@ -18,6 +18,17 @@ public class Movies extends RealmObject implements Parcelable {
     private String poster_path;
     private int category;
 
+    public Movies(int id, String title, String originalTitle, String voteAverage, String overview, String releaseDate, String poster_path, int category) {
+        this.id = id;
+        this.title = title;
+        this.originalTitle = originalTitle;
+        this.voteAverage = voteAverage;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+        this.poster_path = poster_path;
+        this.category = category;
+    }
+
     public Movies() {
 
     }
